@@ -38,11 +38,13 @@ def get_student_by_id(student_id, subject):
     if not student:
         return student
     student = Student.from_dict(student)
-    print
+
     if not subject:
         return student
     else:
-        return student
+        for k, v in student.grades.items():
+            if k == subject:
+                return student
 
 def get_student_by_last_name(last_name):
     queries = []
