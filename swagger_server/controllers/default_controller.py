@@ -55,3 +55,11 @@ def get_student_by_id(student_id, subject=None):  # noqa: E501
         return res
     return 'Not Found', 404
 
+def get_student_by_last_name(last_name):
+
+    res = student_service.get_student_by_last_name(last_name)
+    print(res)
+    print(res[0])
+    if res:
+        return res[0], 200
+    return "Not Found", 404

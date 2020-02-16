@@ -20,6 +20,9 @@ def add_student(student):
     query = Query()
     queries.append(query.first_name == student.first_name)
     queries.append(query.last_name == student.last_name)
+
+    if not student.first_name or not student.last_name:
+        return "Invalid input", 405
     query = reduce(lambda a, b: a & b, queries)
     res = student_db.search(query)
     if res:
@@ -41,7 +44,13 @@ def get_student_by_id(student_id, subject):
     else:
         return student
 
-
+def get_student_by_last_name(last_name):
+    queries = []
+    query = Query()
+    queries.append(query.last_name == last_name)
+    query = reduce(lambda a, b: a & b, queries)
+    res  = student_db.search(query)
+    return res
 
 def delete_student(student_id):
     student = student_db.get(doc_id=int(student_id))
