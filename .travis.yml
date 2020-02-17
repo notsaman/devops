@@ -28,7 +28,7 @@ script:
 - docker logs example_api
 - node_modules/.bin/newman run tests/postman_collection.json -e tests/postman_environment.json
 after_success:
-- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
 - docker tag swagger-spring-example:1.0.0 notsaman/swagger_server
 - docker push notsaman/swagger_server
 env:
